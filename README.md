@@ -16,6 +16,7 @@
 * [The ckanext-envvars extension](#envvars)
 * [The CKAN_SITE_URL parameter](#CKAN_SITE_URL)
 * [Changing the base image](#Changing-the-base-image)
+* [Replacing DataPusher with XLoader](#Replacing-DataPusher-with-XLoader)
 
 
 ## 1.  Overview
@@ -218,14 +219,15 @@ This extension checks for environmental variables conforming to an expected form
 
 For the extension to correctly identify which env var keys map to the format used for the config object, env var keys should be formatted in the following way:
 
-  All uppercase
-  Replace periods ('.') with two underscores ('__')
-  Keys must begin with 'CKAN' or 'CKANEXT'
+  All uppercase  
+  Replace periods ('.') with two underscores ('__')  
+  Keys must begin with 'CKAN' or 'CKANEXT', if they do not you can prepend them with '`CKAN___`' 
 
 For example:
 
   * `CKAN__PLUGINS="envvars image_view text_view recline_view datastore datapusher"`
   * `CKAN__DATAPUSHER__CALLBACK_URL_BASE=http://ckan:5000`
+  * `CKAN___BEAKER__SESSION__SECRET=CHANGE_ME`
 
 These parameters can be added to the `.env` file 
 
@@ -239,3 +241,7 @@ For convenience the CKAN_SITE_URL parameter should be set in the .env file. For 
 
 The base image used in the CKAN Dockerfile and Dockerfile.dev can be changed so a different DockerHub image is used eg: ckan/ckan-base:2.9.9
 could be used instead of ckan/ckan-base:2.10.1
+
+## 14. Replacing DataPusher with XLoader
+
+Check out the wiki page for this: https://github.com/ckan/ckan-docker/wiki/Replacing-DataPusher-with-XLoader
